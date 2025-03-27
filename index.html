@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VR7</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+            overflow-x: hidden;
+            background-image: linear-gradient(to bottom, #000000, #0a0a20);
+        }
+        
+        .navbar {
+            width: 100%;
+            text-align: center;
+            padding-top: 20px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: inline-block;
+            background: linear-gradient(90deg, #1d1d42, #36128c, #1d1d42);
+            border-radius: 15px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(102, 0, 255, 0.5);
+        }
+        
+        .navbar a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 16px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0;
+            float: right;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .content {
+            padding: 120px 20px 50px;
+            text-align: center;
+            min-height: 100vh;
+        }
+        
+        .vr7-logo {
+            font-size: 140px;
+            font-weight: 900;
+            letter-spacing: 15px;
+            margin: 80px 0 60px;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s, transform 1s;
+            background: linear-gradient(to right, #ff0000, #0000ff, #ff8800, #00ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 100%;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% {background-position: 0% 50%}
+            50% {background-position: 100% 50%}
+            100% {background-position: 0% 50%}
+        }
+        
+        .section-text {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: 18px;
+            line-height: 1.6;
+            background-color: rgba(10, 10, 30, 0.5);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #6600ff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        
+        .buttons-container {
+            margin: 100px auto 50px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s, transform 1s;
+        }
+        
+        .action-button {
+            padding: 18px 45px;
+            font-size: 24px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #6600ff, #3311aa);
+            color: white;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 5px 25px rgba(102, 0, 255, 0.5);
+            transition: all 0.3s;
+            font-weight: 700;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .action-button:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(102, 0, 255, 0.7);
+        }
+        
+        .action-button:hover::before {
+            left: 100%;
+        }
+        
+        .features-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 80px auto 30px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            color: white;
+            text-shadow: 0 0 15px rgba(102, 0, 255, 0.7);
+            background: linear-gradient(45deg, #6600ff, #00ccff);
+            padding: 15px 40px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s, transform 1s;
+        }
+        
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px auto;
+            max-width: 1200px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s, transform 1s;
+        }
+        
+        .feature-card {
+            background: rgba(30, 30, 60, 0.5);
+            border-radius: 20px;
+            padding: 30px;
+            width: 250px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 0, 255, 0.4);
+            border-color: rgba(102, 0, 255, 0.5);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #6600ff, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .feature-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .feature-description {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #cccccc;
+        }
+        
+        .image-container {
+            margin: 70px auto;
+            width: 30%; 
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s, transform 1s;
+            position: relative;
+        }
+        
+        .floating-image {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(102, 0, 255, 0.5);
+            border: 3px solid #6600ff;
+        }
+        
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #6600ff, transparent, #00ccff, transparent, #6600ff);
+            background-size: 400% 400%;
+            animation: borderGlow 10s ease infinite;
+            z-index: -1;
+        }
+        
+        @keyframes borderGlow {
+            0% {background-position: 0% 50%}
+            50% {background-position: 100% 50%}
+            100% {background-position: 0% 50%}
+        }
+        
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s, transform 1s;
+        }
+        
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(102, 0, 255, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 50px 0;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(30, 30, 60, 0.5);
+            border-radius: 50%;
+            font-size: 24px;
+            color: white;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background: #6600ff;
+            box-shadow: 0 10px 20px rgba(102, 0, 255, 0.5);
+        }
+        
+        footer {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: rgba(10, 10, 20, 0.5);
+            margin-top: 100px;
+        }
+        
+        .footer-text {
+            font-size: 16px;
+            color: #aaaaaa;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .animated-glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #6600ff, 0 0 40px #6600ff;
+            }
+            to {
+                text-shadow: 0 0 20px #fff, 0 0 30px #00ccff, 0 0 40px #00ccff, 0 0 50px #00ccff;
+            }
+        }
+        
+        /* إضافة أنماط لقسم تحميل الهاكات */
+        .download-steps {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(30, 30, 60, 0.5);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .step-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            border-radius: 15px;
+            background: rgba(20, 20, 40, 0.5);
+            transition: all 0.3s;
+        }
+        
+        .step-container:hover {
+            transform: translateX(10px);
+            background: rgba(102, 0, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .step-number {
+            font-size: 36px;
+            font-weight: 900;
+            color: #6600ff;
+            margin-right: 25px;
+            text-shadow: 0 0 10px rgba(102, 0, 255, 0.7);
+            background: linear-gradient(45deg, #6600ff, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            min-width: 50px;
+        }
+        
+        .step-content {
+            text-align: right;
+        }
+        
+        .step-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        
+        .step-description {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #cccccc;
+        }
+        
+        /* ميزات خاصة - إضافة مكان للأيقونات الخاصة بك */
+        .custom-feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: rgba(30, 30, 60, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(102, 0, 255, 0.5);
+            overflow: hidden;
+        }
+        
+        .custom-feature-icon img {
+            max-width: 70%;
+            max-height: 70%;
+            object-fit: contain;
+        }
+        
+        /* تحسينات عامة للتجاوب مع جميع الأحجام */
+@media screen and (max-width: 1200px) {
+  .features-container {
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .vr7-logo {
+    font-size: 120px;
+    margin: 60px 0 40px;
+  }
+  
+  .features-container {
+    gap: 20px;
+  }
+  
+  .feature-card {
+    width: 220px;
+  }
+  
+  .image-container {
+    width: 45%;
+  }
+  
+  .buttons-container {
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar a {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+  
+  .vr7-logo {
+    font-size: 100px;
+    letter-spacing: 10px;
+    margin: 50px 0 30px;
+  }
+  
+  .section-text {
+    padding: 20px;
+    font-size: 16px;
+  }
+  
+  .features-title {
+    font-size: 30px;
+    padding: 12px 30px;
+  }
+  
+  .features-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .feature-card {
+    width: 80%;
+    max-width: 350px;
+  }
+  
+  .image-container {
+    width: 60%;
+  }
+  
+  .buttons-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .action-button {
+    padding: 15px 40px;
+    font-size: 20px;
+  }
+  
+  .step-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .step-number {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  
+  .step-content {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .navbar {
+    padding-top: 10px;
+  }
+  
+  .nav-container {
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .navbar a {
+    padding: 10px 15px;
+    font-size: 14px;
+    float: none;
+  }
+  
+  .vr7-logo {
+    font-size: 70px;
+    letter-spacing: 5px;
+    margin: 40px 0 20px;
+  }
+  
+  .content {
+    padding: 100px 10px 30px;
+  }
+  
+  .section-text {
+    margin-bottom: 30px;
+    padding: 15px;
+    font-size: 14px;
+  }
+  
+  .features-title {
+    font-size: 24px;
+    padding: 10px 20px;
+    margin: 40px auto 20px;
+  }
+  
+  .feature-card {
+    width: 90%;
+    padding: 20px;
+  }
+  
+  .image-container {
+    width: 80%;
+    margin: 40px auto;
+  }
+  
+  .feature-title {
+    font-size: 20px;
+  }
+  
+  .feature-description {
+    font-size: 14px;
+  }
+  
+  .download-steps {
+    padding: 20px;
+  }
+  
+  .step-title {
+    font-size: 18px;
+  }
+  
+  .step-description {
+    font-size: 14px;
+  }
+  
+  .action-button {
+    width: 80%;
+    padding: 12px 30px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .vr7-logo {
+    font-size: 50px;
+  }
+  
+  .navbar a {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  
+  .feature-card {
+    padding: 15px;
+  }
+  
+  .custom-feature-icon {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* تحسينات لمنع الأخطاء في التخطيط على الأجهزة الصغيرة */
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* تحسينات لتجربة المستخدم على الأجهزة باللمس */
+@media (hover: none) {
+  .action-button:hover {
+    transform: none;
+  }
+  
+  .feature-card:hover {
+    transform: none;
+  }
+  
+  .step-container:hover {
+    transform: none;
+  }
+}
+
+/* تحسين عرض الجزيئات على الأجهزة الصغيرة */
+@media screen and (max-width: 768px) {
+  .particles .particle {
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+.discord-button {
+        display: inline-block;
+        background: linear-gradient(90deg, #5865F2, #4752C4);
+        color: white;
+        font-family: 'Cairo', sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        padding: 15px 30px;
+        border-radius: 8px;
+        text-decoration: none;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(88, 101, 242, 0.5);
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        margin: 20px auto;
+    }
+
+    .discord-button:hover {
+     transform: translateY(-3px);
+     box-shadow: 0 8px 20px rgba(88, 101, 242, 0.7);
+     background: linear-gradient(90deg, #4752C4, #3C45A5);
+    }
+    
+    .mobile-menu {
+position: fixed;
+top: 0;
+right: -250px;
+width: 250px;
+height: 100%;
+background: linear-gradient(135deg, #1d1d42, #36128c);
+z-index: 2000;
+transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+overflow-y: auto;
+padding-top: 70px;
+}
+.mobile-menu.active {
+right: 0;
+}
+.mobile-menu-items {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+.mobile-menu-items li {
+opacity: 0;
+transform: translateX(50px);
+transition: all 0.5s ease;
+}
+.mobile-menu.active .mobile-menu-items li {
+opacity: 1;
+transform: translateX(0);
+}
+/* تأخير انيميشن العناصر لتظهر بالتتابع */
+.mobile-menu.active .mobile-menu-items li:nth-child(1) {
+transition-delay: 0.1s;
+}
+.mobile-menu.active .mobile-menu-items li:nth-child(2) {
+transition-delay: 0.2s;
+}
+.mobile-menu.active .mobile-menu-items li:nth-child(3) {
+transition-delay: 0.3s;
+}
+.mobile-menu.active .mobile-menu-items li:nth-child(4) {
+transition-delay: 0.4s;
+}
+.mobile-menu.active .mobile-menu-items li:nth-child(5) {
+transition-delay: 0.5s;
+}
+.mobile-menu-items li a {
+display: block;
+padding: 15px 25px;
+color: white;
+text-decoration: none;
+font-size: 18px;
+font-weight: 700;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+transition: all 0.3s ease;
+text-align: right;
+}
+.mobile-menu-items li a:hover {
+background: rgba(255, 255, 255, 0.1);
+padding-right: 35px;
+color: #00ccff;
+}
+/* زر القائمة */
+.menu-toggle {
+display: none;
+position: fixed;
+top: 20px;
+right: 20px;
+width: 40px;
+height: 40px;
+background: linear-gradient(135deg, #6600ff, #00ccff);
+border-radius: 50%;
+z-index: 2001;
+cursor: pointer;
+box-shadow: 0 4px 15px rgba(102, 0, 255, 0.5);
+transition: all 0.3s ease;
+}
+.menu-toggle:hover {
+transform: scale(1.1);
+box-shadow: 0 6px 20px rgba(102, 0, 255, 0.7);
+}
+.menu-toggle span {
+display: block;
+position: absolute;
+height: 3px;
+width: 24px;
+background: white;
+opacity: 1;
+right: 8px;
+transform: rotate(0deg);
+transition: all 0.3s ease;
+}
+.menu-toggle span:nth-child(1) {
+top: 12px;
+}
+.menu-toggle span:nth-child(2) {
+top: 19px;
+}
+.menu-toggle span:nth-child(3) {
+top: 26px;
+}
+.menu-toggle.active span:nth-child(1) {
+top: 19px;
+transform: rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+opacity: 0;
+right: -30px;
+}
+.menu-toggle.active span:nth-child(3) {
+top: 19px;
+transform: rotate(-45deg);
+}
+/* الطبقة السوداء المتلاشية */
+.menu-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.7);
+z-index: 1999;
+display: none;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.menu-overlay.active {
+display: block;
+opacity: 1;
+}
+/* تنسيق خاص بالشاشات الصغيرة */
+@media screen and (max-width: 768px) {
+.navbar {
+display: none;
+}
+
+.menu-toggle {
+display: block;
+}
+
+.content {
+padding-top: 80px;
+}
+}
+
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VR7</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- خلفية بجزيئات متحركة -->
+    <div class="particles" id="particles"></div>
+
+    <div class="navbar">
+        <div class="nav-container">
+            <a href="index.html">HOME</a>
+            <a href="Testimonials.html">TESTIMONIALS</a>
+            <a href="ios.html">IOS</a>
+            <a href="code.html">CODE</a>
+        </div>
+    </div>
+    
+    <div class="content">
+        <h1 id="vr7-logo" class="vr7-logo">VR7</h1>
+        
+        <div class="section-text fade-in-section">
+            <p>مرحبًا بك في عالم VR7 المتقدم</p>
+            <p>استكشف أحدث التقنيات وأقوى الأدوات في عالم التطوير والبرمجة</p>
+        </div>
+        
+        <div class="section-text fade-in-section">
+            <p>تجربة استثنائية لا مثيل لها</p>
+            <p>تصميم متطور وأداء متميز يجمع بين القوة والبساطة لتحقيق أعلى مستويات الأداء</p>
+        </div>
+        
+        <div class="section-text fade-in-section">
+            <p>انضم إلينا الآن واكتشف الفرق</p>
+            <p>استمتع بمميزات حصرية وتجربة مستخدم فريدة صممت خصيصًا لتلبية احتياجاتك</p>
+        </div>
+        
+        <!-- عنوان قسم المميزات -->
+        <h2 class="features-title fade-in-section animated-glow">ما هي هاكات ايفون</h2>
+        
+        <!-- مميزات الهاكات -->
+        <div class="features-container fade-in-section">
+            <div class="feature-card">
+                <div class="feature-icon">🔮</div>
+                <h3 class="feature-title">تعزيز الأداء</h3>
+                <p class="feature-description">تحسين مستوى أدائك في اللعبة بشكل كبير من خلال أدوات متقدمة تتيح لك التفوق على المنافسين.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3 class="feature-title">نظام آمن</h3>
+                <p class="feature-description">حماية متكاملة لحسابك مع تقنيات متطورة تجعل اكتشاف استخدامك للهاكات أمرًا مستحيلًا.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">سرعة فائقة</h3>
+                <p class="feature-description">استجابة فورية وسرعة تنفيذ عالية تضمن لك تجربة سلسة دون أي تأخير أو تعليق.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <h3 class="feature-title">تخصيص كامل</h3>
+                <p class="feature-description">إمكانية تخصيص جميع الإعدادات والخصائص حسب احتياجاتك الشخصية وأسلوب لعبك المفضل.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3 class="feature-title">تحديثات مستمرة</h3>
+                <p class="feature-description">نظام تحديث تلقائي يضمن حصولك على أحدث الميزات والتحسينات فور إصدارها.</p>
+            </div>
+        </div>
+        
+        <!-- إضافة قسم شرح تحميل الهاكات -->
+        <h2 id="download" class="features-title fade-in-section animated-glow">كيفية تحميل هاكات ايفون</h2>
+        
+        <div class="download-steps fade-in-section">
+            <div class="step-container">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 class="step-title">تثبيت</h3>
+                    <p class="step-description">قم بالضغط على زر التحميل الذي يكون تحت واختر "فتح" عند ظهور الخيارات من ثمه اختار تثبيت</p>
+                </div>
+            </div>
+            
+            <div class="step-container">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3 class="step-title">تحميل البرنامج</h3>
+                    <p class="step-description">فل تقوم ب ذهاب الئ قسم IOS و اختار هاك موجود</p>
+                </div>
+            </div>
+            
+            <div class="step-container">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3 class="step-title">تثبيت وتفعيل</h3>
+                    <p class="step-description">اضغط علئ فتح او (open) من ثمه اختيار تثبيت او (download)</p>
+                </div>
+            </div>
+            
+            <div class="step-container">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3 class="step-title">البدء بالاستخدام</h3>
+                    <p class="step-description">بعد عمليه توثيق ادخل و فل تقوم ب تفعيل مفتاح عن طريق اكمال مهام معينه و من ثمه استمتع</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم الميزات الخاصة (التي سيضيفها المستخدم) -->
+        <h2 class="features-title fade-in-section animated-glow">DNS</h2>
+        
+        <div class="features-container fade-in-section">
+            <div class="feature-card">
+                <div class="custom-feature-icon">
+                    <img src="download.png" alt="الميزا الاوله">
+                </div>
+                <h3 class="feature-title">تحميل DNS</h3>
+                <p class="feature-description">اختار DNS مناسب من قسم executor من ثمه فتح (open) بعدها تثبيت (download)</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="custom-feature-icon">
+                    <img src="cog.png" alt="ميزة رقم ١">
+                </div>
+                <h3 class="feature-title">اعدادات ايفون</h3>
+                <p class="feature-description">بعد تحميل اتبع هاذه خطوات : اعدادات الايفون > قسم عام > انزل تحت > إدارة الجهاز </p>
+            </div>
+        </div>
+
+        <div class="image-container fade-in-section" id="image-container">
+            <img src="VR7.png" alt="VR7" class="floating-image" id="floating-image">
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+  // إنشاء جزيئات للخلفية
+  function createParticles() {
+    const container = document.getElementById('particles');
+    const particleCount = 20;
+    
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      
+      // حجم عشوائي
+      const size = Math.random() * 150 + 50;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      
+      // موضع عشوائي
+      particle.style.left = `${Math.random() * 100}vw`;
+      particle.style.top = `${Math.random() * 100}vh`;
+      
+      // حركة عشوائية
+      particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      
+      container.appendChild(particle);
+    }
+  }
+  
+  // تأثيرات التمرير
+  function handleScroll() {
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const sections = document.querySelectorAll('.fade-in-section');
+    
+    // جعل العنوان مرئيًا عند تحميل الصفحة
+    const logo = document.getElementById('vr7-logo');
+    if (scrollPosition > 50) {
+      logo.style.opacity = '1';
+      logo.style.transform = 'translateY(0)';
+    }
+    
+    // جعل الأقسام مرئية عند التمرير إليها
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      if (sectionTop < windowHeight * 0.8) {
+        section.classList.add('visible');
+      }
+    });
+  }
+  
+  // إضافة تأثير النقر على الأزرار
+  document.querySelectorAll('.action-button').forEach(button => {
+    button.addEventListener('click', function() {
+      this.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 150);
+    });
+  });
+  
+  // إنشاء عناصر القائمة المتحركة
+  function createMobileMenu() {
+    // إنشاء زر القائمة
+    const menuToggle = document.createElement('div');
+    menuToggle.className = 'menu-toggle';
+    menuToggle.innerHTML = '<span></span><span></span><span></span>';
+    document.body.appendChild(menuToggle);
+    
+    // إنشاء القائمة المتحركة
+    const mobileMenu = document.createElement('div');
+    mobileMenu.className = 'mobile-menu';
+    
+    // نسخ روابط القائمة الأصلية إلى القائمة المتحركة
+    const navLinks = document.querySelectorAll('.navbar a');
+    const menuItemsList = document.createElement('ul');
+    menuItemsList.className = 'mobile-menu-items';
+    
+    navLinks.forEach(link => {
+      const li = document.createElement('li');
+      const newLink = link.cloneNode(true);
+      li.appendChild(newLink);
+      menuItemsList.appendChild(li);
+    });
+    
+    mobileMenu.appendChild(menuItemsList);
+    document.body.appendChild(mobileMenu);
+    
+    // إنشاء طبقة التلاشي
+    const overlay = document.createElement('div');
+    overlay.className = 'menu-overlay';
+    document.body.appendChild(overlay);
+    
+    // تفعيل/إلغاء تفعيل القائمة
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      overlay.classList.toggle('active');
+      
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+    
+    // إغلاق القائمة عند النقر على الطبقة السوداء
+    overlay.addEventListener('click', function() {
+      menuToggle.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+    
+    // إغلاق القائمة عند النقر على أي رابط
+    const mobileLinks = document.querySelectorAll('.mobile-menu-items a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+  
+  // تشغيل الوظائف عند تحميل الصفحة
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('load', () => {
+    createParticles();
+    handleScroll();
+    createMobileMenu();
+  });
+  
+  // إضافة مراقب التقاطع للأقسام
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  document.querySelectorAll('.fade-in-section').forEach(section => {
+    observer.observe(section);
+  });
+  
+  // إضافة تأثير تمرير سلس للروابط
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+});
+    </script>
+</body>
+</html>

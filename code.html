@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scripts Hub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+        
+        :root {
+            --primary: #00c2ff;
+            --secondary: #6e00ff;
+            --accent: #fd0078;
+            --dark: #0a0b10;
+            --light: #f5f5f7;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            background-color: #0a0b10;
+            color: var(--light);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(110, 0, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 194, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(253, 0, 120, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+        
+          .navbar {
+            width: 100%;
+            text-align: center;
+            padding-top: 20px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: inline-block;
+            background: linear-gradient(90deg, #1d1d42, #36128c, #1d1d42);
+            border-radius: 15px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(102, 0, 255, 0.5);
+        }
+        
+        .navbar a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 16px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0;
+            float: right;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .content {
+            padding: 120px 20px 50px;
+            text-align: center;
+            min-height: 100vh;
+        }
+        
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .header h1::before {
+            content: "";
+            position: absolute;
+            width: 120%;
+            height: 15px;
+            background: var(--accent);
+            bottom: 10px;
+            left: -10%;
+            z-index: -1;
+            transform: skewX(-20deg);
+            opacity: 0.4;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .scripts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .script-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        
+        .script-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(var(--primary-rgb), 0.3);
+        }
+        
+        .script-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .script-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .script-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .script-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .script-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .script-badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .script-content {
+            padding: 20px;
+        }
+        
+        .script-description {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .code-block {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .code-block::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+        
+        code {
+            font-family: monospace;
+            color: #e0e0e0;
+            display: block;
+            white-space: pre-wrap;
+            word-break: break-word;
+            direction: ltr;
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .code-keyword {
+            color: #00c2ff;
+        }
+        
+        .code-function {
+            color: #ff9900;
+        }
+        
+        .code-string {
+            color: #fd0078;
+        }
+        
+        .script-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-button {
+            flex: 1;
+            background: transparent;
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .action-button.primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+        }
+        
+        .action-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .action-button.primary:hover {
+            opacity: 0.9;
+            transform: translateY(-3px);
+        }
+        
+        .preview-image {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .preview-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .script-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .creator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .creator-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .update-date {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: bubble 15s infinite ease-in;
+            opacity: 0;
+        }
+        
+        @keyframes bubble {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.5);
+            }
+            20% {
+                opacity: 0.5;
+                transform: translateY(-20%) scale(0.8);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-1000%) scale(0.5);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .scripts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .action-button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        .mobile-menu {
+position: fixed;
+top: 0;
+right: -250px;
+width: 250px;
+height: 100%;
+background: linear-gradient(135deg, #1d1d42, #36128c);
+z-index: 2000;
+transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+overflow-y: auto;
+padding-top: 70px;
+}
+.mobile-menu.active {
+right: 0;
+}
+.mobile-menu-items {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+.mobile-menu-items li {
+opacity: 0;
+transform: translateX(50px);
+transition: all 0.5s ease;
+}
+.mobile-menu.active .mobile-menu-items li {
+opacity: 1;
+transform: translateX(0);
+}
+/* تأخير انيميشن العناصر لتظهر بالتتابع */
+.mobile-menu.active .mobile-menu-items li:nth-child(1) {
+transition-delay: 0.1s;
+}
+.mobile-menu.active .mobile-menu-items li:nth-child(2) {
+transition-delay: 0.2s;
+}
+.mobile-menu.active .mobile-menu-items li:nth-child(3) {
+transition-delay: 0.3s;
+}
+.mobile-menu.active .mobile-menu-items li:nth-child(4) {
+transition-delay: 0.4s;
+}
+.mobile-menu.active .mobile-menu-items li:nth-child(5) {
+transition-delay: 0.5s;
+}
+.mobile-menu-items li a {
+display: block;
+padding: 15px 25px;
+color: white;
+text-decoration: none;
+font-size: 18px;
+font-weight: 700;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+transition: all 0.3s ease;
+text-align: right;
+}
+.mobile-menu-items li a:hover {
+background: rgba(255, 255, 255, 0.1);
+padding-right: 35px;
+color: #00ccff;
+}
+/* زر القائمة */
+.menu-toggle {
+display: none;
+position: fixed;
+top: 20px;
+right: 20px;
+width: 40px;
+height: 40px;
+background: linear-gradient(135deg, #6600ff, #00ccff);
+border-radius: 50%;
+z-index: 2001;
+cursor: pointer;
+box-shadow: 0 4px 15px rgba(102, 0, 255, 0.5);
+transition: all 0.3s ease;
+}
+.menu-toggle:hover {
+transform: scale(1.1);
+box-shadow: 0 6px 20px rgba(102, 0, 255, 0.7);
+}
+.menu-toggle span {
+display: block;
+position: absolute;
+height: 3px;
+width: 24px;
+background: white;
+opacity: 1;
+right: 8px;
+transform: rotate(0deg);
+transition: all 0.3s ease;
+}
+.menu-toggle span:nth-child(1) {
+top: 12px;
+}
+.menu-toggle span:nth-child(2) {
+top: 19px;
+}
+.menu-toggle span:nth-child(3) {
+top: 26px;
+}
+.menu-toggle.active span:nth-child(1) {
+top: 19px;
+transform: rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+opacity: 0;
+right: -30px;
+}
+.menu-toggle.active span:nth-child(3) {
+top: 19px;
+transform: rotate(-45deg);
+}
+/* الطبقة السوداء المتلاشية */
+.menu-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.7);
+z-index: 1999;
+display: none;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.menu-overlay.active {
+display: block;
+opacity: 1;
+}
+/* تنسيق خاص بالشاشات الصغيرة */
+@media screen and (max-width: 768px) {
+.navbar {
+display: none;
+}
+
+.menu-toggle {
+display: block;
+}
+
+.content {
+padding-top: 80px;
+}
+}
+
+</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background bubbles -->
+    <div class="bubbles" id="bubbles"></div>
+    
+    <div class="navbar">
+        <div class="nav-container">
+            <a href="index.html">HOME</a>
+            <a href="Testimonials.html">TESTIMONIALS</a>
+            <a href="ios.html">IOS</a>
+            <a href="code.html">code</a>
+        </div>
+    </div>
+    
+    
+    <div class="container">
+        <div class="header">
+            <h1>مكتبة السكربتات</h1>
+            <p>مجموعة متميزة من أقوى وأحدث السكربتات لتجربة لعب مثالية</p>
+        </div>
+        
+        <div class="scripts-grid">
+            <!-- Script Card 1 -->
+            <div class="script-card">
+                <div class="script-header">
+                    <h3 class="script-title">
+                        <div class="script-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        VR7 سكربت
+                    </h3>
+                    <span class="script-badge">حصري</span>
+                </div>
+                
+                <div class="script-content">
+                    <p class="script-description">سكربت تخريب جميع مابات و عربي، من سيرفر VR7-ON-TOP مع دعم كامل للتحديثات الجديدة.</p>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-value">50K+</span>
+                            <span class="stat-label">مستخدم</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">10</span>
+                            <span class="stat-label">تقييم</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">100%</span>
+                            <span class="stat-label">آمن</span>
+                        </div>
+                    </div>
+                    
+                    <img src="script.png" alt="VR7 Script Preview" class="preview-image">
+                    
+                    <div class="code-block">
+                        <code><span class="code-function">loadstring</span>(<span class="code-function">game</span>:<span class="code-function">HttpGet</span>(<span class="code-string">"https://raw.githubusercontent.com/VR7ss/OMK/refs/heads/main/VR7-ON-TOP"</span>))()</code>
+                    </div>
+                    
+                    <div class="script-actions">
+                        <button class="action-button" id="copy-script">
+                            <i class="fas fa-copy"></i> نسخ
+                        </button>
+                        <button class="action-button primary" id="download-script">
+                            <i class="fas fa-download"></i> تنزيل
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="script-footer">
+                    <div class="creator">
+                        <div class="creator-avatar">V</div>
+                        <span>VR7 Team</span>
+                    </div>
+                    <div class="update-date">تحديث: 15 مارس 2025</div>
+                </div>
+            </div>
+            
+            <!-- Script Card 2 -->
+            <div class="script-card">
+                <div class="script-header">
+                    <h3 class="script-title">
+                        <div class="script-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                       fly hub 
+                    </h3>
+                    <span class="script-badge">جديد</span>
+                </div>
+                
+                <div class="script-content">
+                    <p class="script-description">سكربت طيران يعمل علئ جميع مابات قوي و امان دون مشاكل</p>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-value">soon</span>
+                            <span class="stat-label">مستخدم</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">10</span>
+                            <span class="stat-label">تقييم</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">99%</span>
+                            <span class="stat-label">آمن</span>
+                        </div>
+                    </div>
+                    
+                    <img src="Fly_script.png" alt="VR7 Script Preview" class="preview-image">
+                    
+                    <div class="code-block">
+                        <code><span class="code-function">loadstring</span>(<span class="code-function">game</span>:<span class="code-function">HttpGet</span>(<span class="code-string">"https://raw.githubusercontent.com/Front-Evill/Script-Hub/refs/heads/main/Fly.lua.txt"</span>))()</code>
+                    </div>
+                    
+                    <div class="script-actions">
+                        <button class="action-button">
+                            <i class="fas fa-copy"></i> نسخ
+                        </button>
+                        <button class="action-button primary">
+                            <i class="fas fa-download"></i> تنزيل
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="script-footer">
+                    <div class="creator">
+                        <div class="creator-avatar">F</div>
+                        <span>FRONT Team</span>
+                    </div>
+                    <div class="update-date">تحديث: 10 مارس 2025</div>
+                </div>
+            </div>
+            
+            <!-- Script Card 3 -->
+            <div class="script-card">
+                <div class="script-header">
+                    <h3 class="script-title">
+                        <div class="script-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        Ultimate GUI
+                    </h3>
+                    <span class="script-badge">شائع</span>
+                </div>
+                
+                <div class="script-content">
+                    <p class="script-description">واجهة شاملة مع أكثر من 50 سكربت للألعاب المختلفة مع تحديثات مستمرة.</p>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-value">soon</span>
+                            <span class="stat-label">مستخدم</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">not now</span>
+                            <span class="stat-label">تقييم</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">not now</span>
+                            <span class="stat-label">آمن</span>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <code><span class="code-function">loadstring</span>(<span class="code-function">game</span>:<span class="code-function">HttpGet</span>(<span class="code-string">"soon"</span>))()</code>
+                    </div>
+                    
+                    <div class="script-actions">
+                        <button class="action-button">
+                            <i class="fas fa-copy"></i> نسخ
+                        </button>
+                        <button class="action-button primary">
+                            <i class="fas fa-download"></i> تنزيل
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="script-footer">
+                    <div class="creator">
+                        <div class="creator-avatar">G</div>
+                        <span>Game Masters</span>
+                    </div>
+                    <div class="update-date">اخر تحديث : soon</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+      
+    
+    <script>
+   function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // حجم عشوائي
+                const size = Math.random() * 150 + 50;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // موضع عشوائي
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                // حركة عشوائية
+                particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // تأثيرات التمرير
+        function handleScroll() {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const sections = document.querySelectorAll('.fade-in-section');
+            
+            // جعل الشعار مرئيًا عند تحميل الصفحة
+            const logo = document.getElementById('vr7-logo');
+            if (scrollPosition > 50) {
+                logo.style.opacity = '1';
+                logo.style.transform = 'translateY(0)';
+            }
+            
+            // جعل الأقسام مرئية عند التمرير إليها
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < windowHeight * 0.8) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+        
+        // إضافة تأثير النقر على الأزرار
+        document.querySelectorAll('.action-button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+        
+        // تشغيل الوظائف عند تحميل الصفحة
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', () => {
+            createParticles();
+            handleScroll();
+        });
+        
+        // تشغيل معالج التمرير مرة واحدة عند تحميل الصفحة
+        setTimeout(handleScroll, 100);
+        
+        // تعريف حركة الجزيئات
+        document.styleSheets[0].insertRule(`
+            @keyframes float {
+                0%, 100% { 
+                    transform: translate(0, 0) rotate(0deg); 
+                    opacity: 0.3;
+                }
+                25% { 
+                    transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 90}deg);
+                    opacity: 0.6;
+                }
+                50% { 
+                    transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 180}deg);
+                    opacity: 0.3;
+                }
+                75% { 
+                    transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 270}deg);
+                    opacity: 0.6;
+                }
+            }
+        `, 0);
+        
+        // إضافة تأثير تمرير سلس
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        
+        // إنشاء جزيئات للخلفية
+function createParticles() {
+  const container = document.getElementById('particles');
+  const particleCount = 20;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    
+    // حجم عشوائي
+    const size = Math.random() * 150 + 50;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    
+    // موضع عشوائي
+    particle.style.left = `${Math.random() * 100}vw`;
+    particle.style.top = `${Math.random() * 100}vh`;
+    
+    // حركة عشوائية
+    particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
+    particle.style.animationDelay = `${Math.random() * 5}s`;
+    
+    container.appendChild(particle);
+  }
+}
+
+// تأثيرات التمرير
+function handleScroll() {
+  const scrollPosition = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const sections = document.querySelectorAll('.fade-in-section');
+  
+  // جعل العنوان مرئيًا عند تحميل الصفحة
+  const title = document.getElementById('executor-title');
+  if (scrollPosition > 50) {
+    title.style.opacity = '1';
+    title.style.transform = 'translateY(0)';
+  }
+  
+  // جعل الأقسام مرئية عند التمرير إليها
+  sections.forEach(section => {
+    const sectionTop = section.getBoundingClientRect().top;
+    if (sectionTop < windowHeight * 0.8) {
+      section.classList.add('visible');
+    }
+  });
+}
+
+// إضافة تأثير النقر على الأزرار
+document.querySelectorAll('.download-button').forEach(button => {
+  button.addEventListener('click', function() {
+    this.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      this.style.transform = '';
+    }, 150);
+  });
+});
+
+// تشغيل الوظائف عند تحميل الصفحة
+window.addEventListener('scroll', handleScroll);
+window.addEventListener('load', () => {
+  createParticles();
+  handleScroll();
+});
+
+// تشغيل معالج التمرير مرة واحدة عند تحميل الصفحة
+setTimeout(handleScroll, 100);
+
+// تعريف حركة الجزيئات
+document.styleSheets[0].insertRule(`
+            @keyframes float {
+                0%, 100% { 
+                    transform: translate(0, 0) rotate(0deg); 
+                    opacity: 0.3;
+                }
+                25% { 
+                    transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 90}deg);
+                    opacity: 0.6;
+                }
+                50% { 
+                    transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 180}deg);
+                    opacity: 0.3;
+                }
+                75% { 
+                    transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 270}deg);
+                    opacity: 0.6;
+                }
+            }
+        `, 0);
+
+// إضافة تأثير تمرير سلس
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  document.querySelectorAll('.fade-in-section').forEach(section => {
+    observer.observe(section);
+  });
+});
+
+// إضافة العناصر اللازمة للقائمة في DOM
+document.addEventListener('DOMContentLoaded', function() {
+  // إنشاء العناصر اللازمة للقائمة في DOM
+  const menuToggle = document.createElement('div');
+  menuToggle.className = 'menu-toggle';
+  menuToggle.innerHTML = '<span></span><span></span><span></span>';
+  document.body.appendChild(menuToggle);
+  
+  // إنشاء القائمة المتحركة
+  const mobileMenu = document.createElement('div');
+  mobileMenu.className = 'mobile-menu';
+  
+  // نسخ روابط القائمة الأصلية إلى القائمة المتحركة
+  const navLinks = document.querySelectorAll('.navbar a');
+  const menuItemsList = document.createElement('ul');
+  menuItemsList.className = 'mobile-menu-items';
+  
+  navLinks.forEach(link => {
+    const li = document.createElement('li');
+    const newLink = link.cloneNode(true);
+    li.appendChild(newLink);
+    menuItemsList.appendChild(li);
+  });
+  
+  mobileMenu.appendChild(menuItemsList);
+  document.body.appendChild(mobileMenu);
+  
+  // إنشاء طبقة التلاشي
+  const overlay = document.createElement('div');
+  overlay.className = 'menu-overlay';
+  document.body.appendChild(overlay);
+  
+  // تحسين التفاعل مع القائمة
+  menuToggle.addEventListener('click', function() {
+    // تبديل الكلاسات بشكل أكثر دقة
+    this.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    overlay.classList.toggle('active');
+    
+    // تحسين التحكم بالتمرير
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+    
+    // إضافة تأثير تموج عند النقر
+    const ripple = document.createElement('div');
+    ripple.className = 'ripple';
+    this.appendChild(ripple);
+    
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.width = ripple.style.height = size + 'px';
+    
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  });
+  
+  // إغلاق القائمة عند النقر على الطبقة السوداء
+  overlay.addEventListener('click', function() {
+    menuToggle.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  });
+  
+  // إغلاق القائمة عند النقر على أي رابط في القائمة
+  const mobileLinks = document.querySelectorAll('.mobile-menu-items a');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      menuToggle.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+      
+      // التنقل السلس بين الأقسام
+      const targetId = this.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        targetSection.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+  
+  // إضافة مراقب التقاطع للأقسام
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  // مراقبة الأقسام القابلة للتلاشي
+  document.querySelectorAll('.fade-in-section').forEach(section => {
+    observer.observe(section);
+  });
+  
+  // إضافة أنماط تموج للزر
+  const style = document.createElement('style');
+  style.textContent = `
+    .menu-toggle {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .ripple {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple-effect 0.6s linear;
+      pointer-events: none;
+    }
+    
+    @keyframes ripple-effect {
+      to {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+});
+
+
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+const menuOverlay = document.querySelector('.menu-overlay');
+
+// إضافة مستمع الحدث لزر القائمة
+menuToggle.addEventListener('click', function() {
+  // تبديل الكلاس في العناصر
+  this.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+  menuOverlay.classList.toggle('active');
+  
+  // منع التمرير عندما تكون القائمة مفتوحة
+  if (mobileMenu.classList.contains('active')) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// إغلاق القائمة عند النقر على الطبقة السوداء
+menuOverlay.addEventListener('click', function() {
+  menuToggle.classList.remove('active');
+  mobileMenu.classList.remove('active');
+  menuOverlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+});
+
+    </script>
+</body>
+</html>
