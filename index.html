@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VR7 TEAM</title>
+  <link rel="stylesheet" href="sty3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+  
+  <!-- Loading Screen --> 
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loader">
+      <div class="loader-circle"></div>
+      <div class="loader-text">VR7 TEAM - جاري تحميل الموقع</div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <i class="fas fa-code"></i>
+        <span>VR7</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">
+          <i class="fas fa-home"></i>
+          <span>vr7 Team</span>
+        </a>
+        <a href="scripts.html" class="nav-link">
+          <i class="fas fa-terminal"></i>
+          <span>السكربتات</span>
+        </a>
+        <a href="pc.html" class="nav-link">
+          <i class="fas fa-desktop"></i>
+          <span>هاكات PC</span>
+        </a>
+        <a href="ios.html" class="nav-link">
+          <i class="fab fa-apple"></i>
+          <span>هاكات iOS</span>
+        </a>
+        <a href="android.html" class="nav-link">
+          <i class="fab fa-android"></i>
+          <span>هاكات Android</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Toggle -->
+  <div class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <div class="mobile-logo">
+        <i class="fas fa-code"></i>
+        <span>VR7 TEAM</span>
+      </div>
+    </div>
+    <ul class="mobile-menu-items">
+      <li><a href="index.html"><i class="fas fa-home"></i> الفريق</a></li>
+      <li><a href="scripts.html"><i class="fas fa-terminal"></i> السكربتات</a></li>
+      <li><a href="pc.html"><i class="fas fa-desktop"></i> هاكات PC</a></li>
+      <li><a href="ios.html"><i class="fab fa-apple"></i> هاكات iOS</a></li>
+      <li><a href="android.html"><i class="fab fa-android"></i> هاكات Android</a></li>
+    </ul>
+  </div>
+
+  <!-- Overlay -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- Particles Background -->
+  <div class="particles-bg"></div>
+
+  <!-- Main Content -->
+  <main class="content">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-crown"></i>
+          <span>فريق احترافي</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="title-line">فريق</span>
+          <span class="title-line gradient-text">VR7</span>
+        </h1>
+        <p class="hero-subtitle">
+          نحن فريق من المطورين والمتخصصين في صنع هاكات الايفون و الاندرويد و بيسي 
+          <br>
+          نقدم أفضل الحلول والأدوات المتطورة
+        </p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">9</div>
+            <div class="stat-label">أعضاء الفريق</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">60,000+</div>
+            <div class="stat-label">عدد اعضاء سيرفر ديسورد</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">2.1</div>
+            <div class="stat-label">تحديث</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="floating-elements">
+          <div class="floating-element" data-speed="2">
+            <i class="fas fa-code"></i>
+          </div>
+          <div class="floating-element" data-speed="3">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="floating-element" data-speed="1.5">
+            <i class="fas fa-terminal"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">أعضاء الفريق</h2>
+          <p class="section-subtitle">تعرف على فريقنا المتميز من المطورين والخبراء</p>
+        </div>
+
+        <div class="team-grid">
+          <!-- Team Members -->
+          <div class="member-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="member-avatar">
+              <img src="image/vr7.png" alt="VR7" loading="lazy">
+              <div class="member-status online"></div>
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">VR7</h3>
+              <p class="member-role">owner</p>
+              <div class="member-skills">
+                <span class="skill-tag">مطور سكربتات</span>
+                <span class="skill-tag">مطور هاكات</span>
+              </div>
+            </div>
+            <div class="member-social">
+              <a href="https://discord.com/users/1196473067258527794" target="_blank" class="social-link discord">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="member-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="member-avatar">
+              <img src="image/7ge.png" alt="DRYFD" loading="lazy">
+              <div class="member-status online"></div>
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">DRYFD</h3>
+              <p class="member-role">مساعد owner</p>
+              <div class="member-skills">
+                <span class="skill-tag">مطور بوتات</span>
+                <span class="skill-tag">مطور هاكات</span>
+              </div>
+            </div>
+            <div class="member-social">
+              <a href="https://discord.com/users/274366167093608450" target="_blank" class="social-link discord">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="member-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="member-avatar">
+              <img src="image/7sone.png" alt="7sone" loading="lazy">
+              <div class="member-status online"></div>
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">7sone</h3>
+              <p class="member-role">مطور سكربتات</p>
+              <div class="member-skills">
+                <span class="skill-tag">lua</span>
+                <span class="skill-tag">luau</span>
+              </div>
+            </div>
+            <div class="member-social">
+              <a href="https://discord.com/users/494786823877296128" target="_blank" class="social-link discord">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="member-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="member-avatar">
+              <img src="image/front-evill.png" alt="FRONT" loading="lazy">
+              <div class="member-status online"></div>
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">FRONT</h3>
+              <p class="member-role">مطور web</p>
+              <div class="member-skills">
+                <span class="skill-tag">html</span>
+                <span class="skill-tag">css</span>
+                <span class="skill-tag">lua</span>
+                <span class="skill-tag">java script</span>
+              </div>
+            </div>
+            <div class="member-social">
+              <a href="https://discord.com/users/1319184361635188827" target="_blank" class="social-link discord">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="member-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="member-avatar">
+              <img src="image/sato.png" alt="S6O" loading="lazy">
+              <div class="member-status online"></div>
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">Sato</h3>
+              <p class="member-role">مشرف</p>
+              <div class="member-skills">
+                <span class="skill-tag">مطور هاكات</span>
+                <span class="skill-tag">اشراف علئ الاداره</span>
+              </div>
+            </div>
+            <div class="member-social">
+              <a href="https://discord.com/users/768121405095018526" target="_blank" class="social-link discord">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="member-card" data-aos="fade-up" data-aos-delay="600">
+            <div class="member-avatar">
+              <img src="image/abod.png" alt="Abdullah Al-Anzi" loading="lazy">
+              <div class="member-status online"></div>
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">Abdullah Al-Anzi</h3>
+              <p class="member-role">support</p>
+              <div class="member-skills">
+                <span class="skill-tag">ادارة الاعضاء</span>
+                <span class="skill-tag">مساعد</span>
+              </div>
+            </div>
+            <div class="member-social">
+              <a href="https://discord.com/users/926279607068540998" target="_blank" class="social-link discord">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="member-card" data-aos="fade-up" data-aos-delay="700">
+            <div class="member-avatar">
+              <img src="image/bof.png" alt="BOF" loading="lazy">
+              <div class="member-status online"></div>
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">BOF</h3>
+              <p class="member-role">مطور</p>
+              <div class="member-skills">
+                <span class="skill-tag">هاكات ايفون</span>
+                <span class="skill-tag">هاكات اندرويد</span>
+              </div>
+            </div>
+            <div class="member-social">
+              <a href="https://discord.com/users/1035589319232077845" target="_blank" class="social-link discord">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="member-card" data-aos="fade-up" data-aos-delay="800">
+            <div class="member-avatar">
+              <img src="image/kuro.png" alt="KURO" loading="lazy">
+              <div class="member-status online"></div>
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">KURO</h3>
+              <p class="member-role">دعم فني</p>
+              <div class="member-skills">
+                <span class="skill-tag">دعم</span>
+                <span class="skill-tag">استشارات</span>
+              </div>
+            </div>
+            <div class="member-social">
+              <a href="https://discord.com/users/727843071622119424" target="_blank" class="social-link discord">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>                       
+
+      <div class="member-card" data-aos="fade-up" data-aos-delay="900">
+            <div class="member-avatar">
+              <img src="image/indra.png" alt="INDRA" loading="lazy">
+              <div class="member-status online"></div>
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">INDRA</h3>
+              <p class="member-role">دعم فني</p>
+              <div class="member-skills">
+                <span class="skill-tag">مساعد</span>
+                <span class="skill-tag">مراقب</span>
+              </div>
+            </div>
+            <div class="member-social">
+              <a href="https://discord.com/users/128449876199" target="_blank" class="social-link discord">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <div class="member-card" data-aos="fade-up" data-aos-delay="1000">
+            <div class="member-avatar">
+              <img src="image/rakan.png" alt="RAKAN" loading="lazy">
+              <div class="member-status online"></div>
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">RAKAN</h3>
+              <p class="member-role">دعم فني</p>
+              <div class="member-skills">
+                <span class="skill-tag">مراقب</span>
+                <span class="skill-tag">مساعد</span>
+              </div>
+            </div>
+            <div class="member-social">
+              <a href="https://discord.com/users/128449876199" target="_blank" class="social-link discord">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>انضم إلى ديسكورد</h2>
+          <p>تواصل مع الاعضاء و الفريق</p>
+          <a href="https://discord.gg/vr7" target="_blank" class="cta-button">
+            <i class="fab fa-discord"></i>
+            <span>discord inv</span>
+            <div class="button-bg"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
